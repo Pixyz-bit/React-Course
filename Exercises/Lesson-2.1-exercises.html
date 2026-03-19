@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chatbot</title>
+</head>
+
+<body>
+  <div class="js-container"></div>
+
+
+  <!--These are react external library-->
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <!--A specific version of react library by SuperSimpleDev-->
+
+  <!--Babel = translates JSX into JavaScript-->
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script> <!--First load the script tag-->
+  <script type="text/babel"> //Then declare the type ="text/babel" to translate JSX into JS
+
+    function LoginForm() {
+      return (
+        <>
+            <div><input type="text" placeholder="Email" /></div>
+          <div><input type="password" placeholder="Password" /></div>
+          <button>Login</button >
+          <button>Sign Up</button>
+          </>
+      )
+    }
+    function App() {
+      return (
+        <>
+          <p> Hello, welcome to my website</p>
+          <LoginForm />
+        </>
+      );
+    }
+
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App />); 
+  </script>
+</body>
+
+</html>

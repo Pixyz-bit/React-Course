@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chatbot</title>
+</head>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+
+  }
+
+
+  .btnCounter {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    margin: 5px;
+  }
+
+  .btnContainers {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(222, 222, 222);
+    align-items: center;
+  }
+</style>
+
+<body>
+  <div class="js-container"></div>
+
+  <!--These are react external library-->
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+  <!--A specific version of react library by SuperSimpleDev-->
+
+  <!--Babel = translates JSX into JavaScript-->
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script> <!--First load the script tag-->
+  <script type="text/babel"> //Then declare the type ="text/babel" to translate JSX into JS
+
+
+    function App() {
+      const buttonRef = React.useRef();
+      const [clickCounter, setClickCounter] = React.useState(0);
+      const [isAutoClicking, setIsAutoClicking] = React.useState(false);
+      const intervalRef = React.useRef(null);
+
+      function clicked() {
+        setClickCounter(clickCounter + 1);
+      }
+
+      function autoClick() {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+          setIsAutoClicking(false);
+          return;
+        }
+
+        intervalRef.current = setInterval(() => {
+          const buttonElem = buttonRef.current;
+          if (buttonElem) {
+            buttonElem.click();
+          }
+        }, 1000);
+
+        setIsAutoClicking(true);
+      }
+
+
+      return (
+        <div className="btnContainers">
+          <button
+            onClick={clicked}
+            ref={buttonRef}
+            className="btnCounter"
+          >
+            Clicked {clickCounter} {clickCounter === 1 ? 'time' : 'times'}
+          </button>
+          <button className="btnCounter" onClick={() => setClickCounter(0)}>Reset</button>
+          <button className="btnCounter" onClick={autoClick}>
+            {isAutoClicking ? 'Stop Auto Click' : 'Auto Click'}
+          </button>
+        </div>
+      );
+    }
+
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App />); 
+  </script>
+</body>
+
+</html>

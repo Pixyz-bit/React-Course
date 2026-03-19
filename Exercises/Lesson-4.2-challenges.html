@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chatbot</title>
+</head>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+
+
+  .txt-email,
+  .txt-pass {
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: block;
+    margin: 5px;
+    border-width: 1px;
+    margin-right: 5px;
+  }
+
+  .btns {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: rgb(0, 123, 255);
+    color: white;
+    margin: 5px;
+    border-width: 0;
+
+  }
+
+  .pass-container {
+    display: flex;
+    align-items: center;
+  }
+</style>
+
+<body>
+  <div class="js-container"></div>
+
+  <!--These are react external library-->
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+  <!--A specific version of react library by SuperSimpleDev-->
+
+  <!--Babel = translates JSX into JavaScript-->
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script> <!--First load the script tag-->
+  <script type="text/babel"> //Then declare the type ="text/babel" to translate JSX into JS
+
+
+    function App() {
+      const [time, setTime] = React.useState(dayjs().format('HH:mm:ss'))
+      React.useEffect(() => {
+        setInterval(()=>{
+          setTime(dayjs().format('HH:mm:ss')); 
+        console.log('run code')},1000)
+      },[]);
+      return (
+        <></>
+      );
+    }
+
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App />); 
+  </script>
+</body>
+
+</html>

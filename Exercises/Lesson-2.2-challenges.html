@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chatbot</title>
+</head>
+
+<body>
+  <div class="js-container"></div>
+
+
+  <!--These are react external library-->
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <!--A specific version of react library by SuperSimpleDev-->
+
+  <!--Babel = translates JSX into JavaScript-->
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script> <!--First load the script tag-->
+  <script type="text/babel"> //Then declare the type ="text/babel" to translate JSX into JS
+
+    function ProductDetails({ name, price, discountPrice, imageSrc }) {
+      return (
+        <>
+          <div><img src={imageSrc} alt="" width="50" /></div>
+          <p>{name}</p>
+          {/*discountPrice && (
+            <>
+              <del><p>Price: ${price}</p></del>
+              <p>Discount Price: ${discountPrice}</p>
+            </>
+          )}
+          {!discountPrice && <p>Price: ${price}</p>*/}
+          {discountPrice ? (
+            <>
+              <del><p>Price: ${price}</p></del>
+              <p>Discount Price: ${discountPrice}</p>
+            </>
+          ) : <p>Price: ${price}</p>}
+        </>
+      )
+    }
+    function App() {
+      return (
+        <>
+          <ProductDetails name="Cotton Socks" price="10.90" discountPrice="5.45" imageSrc="/assets/cotton-socks.png" />
+          <button>Add to Cart</button>
+          <br /><br /><br /><br />
+          <ProductDetails name="Tennis Balls" price="6.00" imageSrc="/assets/tennis-balls.png" />
+          <button>Add to Cart</button>
+          <br /><br /><br /><br />
+          <ProductDetails name="Plain T-Shirt" price="7.99" imageSrc="/assets/plain-t-shirt.png" />
+          <button>Add to Cart</button>
+        </>
+      );
+    }
+
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App />); 
+  </script>
+</body>
+
+</html>

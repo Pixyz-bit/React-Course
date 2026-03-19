@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 3 Exercises</title>
+</head>
+
+<body>
+  <div class="js-container"></div>
+
+
+  <!--These are react external library-->
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <!--A specific version of react library by SuperSimpleDev-->
+
+  <!--Babel = translates JSX into JavaScript-->
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script> <!--First load the script tag-->
+  <script type="text/babel"> //Then declare the type ="text/babel" to translate JSX into JS
+
+    function Challenge3G() {
+      const [string, setString] = React.useState('');
+      return (
+        <>
+          <input type="text"
+            onChange={(event) => {
+              setString(event.target.value)
+            }} />
+            <button onClick={()=>{setString('')}}>Reset</button>
+            <button onClick={()=>{setString('Arlan')}}>Example</button>
+          <p>Hello, {string}</p>
+        </>
+      )
+    }
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<Challenge3G />); //This is the function App()
+  </script>
+</body>
+
+</html>
